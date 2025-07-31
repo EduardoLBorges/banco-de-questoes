@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Banco de Questões - Home{% endblock %}
+
+{% block content %}
+<h1>Banco de Questões de Física</h1>
+
+<div>
+    <a href="{{ url_for('cadastrar_questao') }}">➕ Cadastrar Nova Questão</a> |
+    <a href="{{ url_for('listar_questoes') }}">📋 Listar Questões</a> |
+    <a href="{{ url_for('gerar_prova') }}">📝 Gerar Prova</a>
+</div>
+
+<hr>
+
+<h2>Últimas Questões Cadastradas</h2>
+{% if questoes %}
+    <ul>
+    {% for questao in questoes %}
+        <li>
+            {{ loop.index }}. <span>{{ questao.enunciado|safe }}</span> 
+            <small>({{ questao.tema }}, {{ questao.nivel }})</small>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nenhuma questão cadastrada ainda.</p>
+{% endif %}
+
+{% endblock %}

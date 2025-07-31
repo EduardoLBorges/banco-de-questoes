@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}{{ prova.titulo }}{% endblock %}
+
+{% block content %}
+
+<h2>{{ prova.titulo }}</h2>
+<p>Data: {{ prova.data_criacao.strftime('%d/%m/%Y') }}</p>
+
+<ol>
+{% for item in questoes %}
+    <li>
+        <strong>Tema:</strong> {{ item.questao.tema }}<br>
+        <strong>Nível:</strong> {{ item.questao.nivel }}<br><br>
+        {{ item.questao.enunciado|safe }}
+    </li>
+    <br>
+{% endfor %}
+</ol>
+
+<a href="{{ url_for('gerar_prova') }}">← Gerar outra prova</a>
+
+{% endblock %}

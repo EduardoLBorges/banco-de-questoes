@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Gerar Prova{% endblock %}
+
+{% block content %}
+
+<h2>Gerar Prova Aleatória</h2>
+
+<form method="post">
+    <label>Tema (opcional):</label><br>
+
+    {% include "componentes/temas_checkbox.html" %}
+
+    <label>Nível:</label><br>
+    <select name="nivel">
+        <option value="">Qualquer</option>
+        <option value="muito fácil">Muito Fácil</option>
+        <option value="fácil">Fácil</option>
+        <option value="médio">Médio</option>
+        <option value="difícil">Difícil</option>
+        <option value="muito difícil">Muito Difícil</option>
+    </select><br><br>
+
+    <label>Quantidade de Questões:</label><br>
+    <input type="number" name="quantidade" min="1" value="5" required><br><br>
+
+    <button type="submit">Gerar Prova</button>
+</form>
+
+{% endblock %}

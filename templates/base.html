@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Banco de Questões{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% include "componentes/MathJax.html" %}
+</head>
+<body>
+    <header><h1>Banco de Questões</h1></header>
+    <main>{% block content %}{% endblock %}</main>
+</body>
+</html>

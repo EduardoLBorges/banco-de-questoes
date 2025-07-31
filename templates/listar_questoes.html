@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Questões{% endblock %}
+
+{% block content %}
+
+    <h2>Questões Cadastradas</h2>
+
+    {% if questoes %}
+        <table border="1" cellpadding="10">
+            <tr>
+                <th>ID</th>
+                <th>Enunciado</th>
+                <th>Tema</th>
+                <th>Tipo</th>
+                <th>Nível</th>
+                <th>Gabarito</th>
+                <th>Fonte</th>
+            </tr>
+            {% for q in questoes %}
+            <tr>
+                <td>{{ q.id }}</td>
+                <td>{{ q.enunciado | truncate(80) }}</td>
+                <td>{{ q.tema }}</td>
+                <td>{{ q.tipo }}</td>
+                <td>{{ q.nivel }}</td>
+                <td>{{ q.gabarito }}</td>
+                <td>{{ q.fonte }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhuma questão cadastrada ainda.</p>
+    {% endif %}
+
+    <br>
+    <a href="{{ url_for('cadastrar_questao') }}">Cadastrar nova questão</a>
+    
+{% endblock %}
