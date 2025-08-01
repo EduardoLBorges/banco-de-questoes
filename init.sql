@@ -1,5 +1,5 @@
 CREATE TABLE questoes(  
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     enunciado TEXT,
     tema TEXT,
     tipo TEXT,
