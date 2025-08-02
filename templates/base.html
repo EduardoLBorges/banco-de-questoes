@@ -7,7 +7,16 @@
     {% include "componentes/MathJax.html" %}
 </head>
 <body>
-    <header><h1>Banco de Questões</h1></header>
+    <header>
+        <h1>Banco de Questões</h1>
+        <nav>
+            <a href="{{ url_for('home') }}">Início</a> |
+            <a href="{{ url_for('gerar_prova') }}">Gerar Prova</a> |
+            <a href="{{ url_for('listar_provas') }}">Provas Geradas</a> |
+            <a href="{{ url_for('cadastrar_questao') }}">Cadastrar Questão</a> |
+            <a href="{{ url_for('listar_questoes') }}">Banco de Questões</a>
+        </nav>
+    </header>
     <main>{% block content %}{% endblock %}</main>
 </body>
 </html>

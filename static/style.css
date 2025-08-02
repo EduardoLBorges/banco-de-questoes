@@ -10,6 +10,11 @@ header {
     padding: 10px;
 }
 
+nav {
+  background: aliceblue;
+  text-align: center;
+}
+
 .grupo {
     margin-left: 20px; 
 }
@@ -18,4 +23,28 @@ header {
 }
 label { 
     display: block; 
+}
+.temas-compacto label {
+    display: inline-flex;
+    align-items: center;
+    margin: 2px 10px 2px 0;
+    font-size: 0.96em;
+    cursor: pointer;
+}
+.temas-compacto .grupo {
+    margin-left: 12px;
+    padding-left: 8px;
+    border-left: 2px solid #e0e0e0;
+}
+.temas-compacto .categoria {
+    margin-left: 18px;
+    padding-left: 8px;
+    border-left: 1px dashed #d0d0d0;
+}
+.temas-compacto input[type="checkbox"] {
+    margin-right: 4px;
+}
+.temas-compacto {
+    margin-bottom: 10px;
+    padding: 2px 0;
 }

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Provas Geradas{% endblock %}
+
+{% block content %}
+<h2>Provas Geradas</h2>
+
+{% if provas %}
+    <ul>
+    {% for prova in provas %}
+        <li>
+            <strong>{{ prova.titulo }}</strong> <br>
+            Data: {{ prova.data_criacao.strftime('%d/%m/%Y %H:%M') }} <br>
+            <a href="{{ url_for('visualizar_prova', prova_id=prova.id) }}">Visualizar</a>
+            <form action="{{ url_for('excluir_prova', prova_id=prova.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta prova?');">
+                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+            </form>
+        </li>
+        <hr>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Nenhuma prova gerada ainda.</p>
+{% endif %}
+
+<a href="{{ url_for('gerar_prova') }}">← Gerar nova prova</a>
+{% endblock %}
