@@ -26,7 +26,7 @@ class Prova(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     titulo = db.Column(db.String(100))
-    data_criacao = db.Column(db.DateTime, default=datetime.utcnow)
+    data_criacao = db.Column(db.DateTime, default=datetime.now)
 
     questoes = db.relationship("ProvaQuestao", back_populates="prova")
 
@@ -83,8 +83,6 @@ def listar_questoes():
 def truncate(text, length=80):
     return text if len(text) <= length else text[:length] + "..."
 
-import random
-from sqlalchemy import func
 
 @app.route("/gerar_prova", methods=["GET", "POST"])
 def gerar_prova():
