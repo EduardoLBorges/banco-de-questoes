@@ -6,19 +6,34 @@
 <h2>Provas Geradas</h2>
 
 {% if provas %}
-    <ul>
+    <div class="provas-cards">
     {% for prova in provas %}
-        <li>
-            <strong>{{ prova.titulo }}</strong> <br>
-            Data: {{ prova.data_criacao.strftime('%d/%m/%Y %H:%M') }} <br>
-            <a href="{{ url_for('visualizar_prova', prova_id=prova.id) }}">Visualizar</a>
-            <form action="{{ url_for('excluir_prova', prova_id=prova.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta prova?');">
-                <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-            </form>
-        </li>
-        <hr>
+        <div class="card-prova">
+            <div class="card-prova-titulo" title="{{ prova.titulo }}">
+                {{ prova.titulo | truncate(40) }}
+            </div>
+            <div class="card-prova-data">
+                Data: {{ prova.data_criacao.strftime('%d/%m/%Y') }}
+            </div>
+            <div class="card-prova-info">
+                {% set questoes = prova.questoes %}
+                <span><strong>{{ questoes|length }}</strong> questão{{ 's' if questoes|length != 1 else '' }}</span>
+                <br>
+                {% set temas = questoes | map(attribute='questao.tema') | list %}
+                <span>
+                    <strong>Assuntos:</strong>
+                    {{ temas | unique | join(', ') if temas else '---' }}
+                </span>
+            </div>
+            <div class="card-prova-acoes">
+                <a href="{{ url_for('visualizar_prova', prova_id=prova.id) }}">Visualizar</a>
+                <form action="{{ url_for('excluir_prova', prova_id=prova.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir esta prova?');">
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+            </div>
+        </div>
     {% endfor %}
-    </ul>
+    </div>
 {% else %}
     <p>Nenhuma prova gerada ainda.</p>
 {% endif %}

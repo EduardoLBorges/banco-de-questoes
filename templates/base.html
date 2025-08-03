@@ -18,5 +18,19 @@
         </nav>
     </header>
     <main>{% block content %}{% endblock %}</main>
+    <script>
+document.querySelectorAll('.enunciado-trunc, .gabarito-trunc').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+        setTimeout(function() {
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                MathJax.typesetPromise();
+            }
+        }, 50);
+    });
+});
+if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.typesetPromise();
+}
+</script>
 </body>
 </html>

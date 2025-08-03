@@ -20,11 +20,25 @@
             {% for q in questoes %}
             <tr>
                 <td>{{ q.id }}</td>
-                <td title="{{ q.enunciado }}" style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ q.enunciado | truncate(80) }}</td>
+                <td style="position:relative;">
+                    {% if q.enunciado|length > 80 %}
+                        <span class="enunciado-trunc">{{ q.enunciado | safe }}</span>
+                        <span class="tooltip-enunciado">{{ q.enunciado | safe }}</span>
+                    {% else %}
+                        <span>{{ q.enunciado | safe }}</span>
+                    {% endif %}
+                </td>
                 <td>{{ q.tema }}</td>
                 <td>{{ q.tipo }}</td>
                 <td>{{ q.nivel }}</td>
-                <td style="overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ q.gabarito }}</td>
+                <td style="position:relative;">
+                    {% if q.gabarito|length > 30 %}
+                        <span class="gabarito-trunc">{{ q.gabarito | safe }}</span>
+                        <span class="tooltip-gabarito">{{ q.gabarito | safe }}</span>
+                    {% else %}
+                        <span>{{ q.gabarito | safe }}</span>
+                    {% endif %}
+                </td>
                 <td>{{ q.fonte }}</td>
             </tr>
             {% endfor %}
